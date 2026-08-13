@@ -134,10 +134,3 @@ If referencing this work, please cite the original framework:
 
 > Gryparis, A., Paciorek, C. J., Zeka, A., Schwartz, J., & Coull, B. A. (2009). Measurement error caused by
 > spatial misalignment in environmental epidemiology. *Biostatistics*, 10(2), 258–274.
-
----
-
-## Contact
-
-For questions about this implementation, contact any of the authors listed above via their university email
-addresses.
