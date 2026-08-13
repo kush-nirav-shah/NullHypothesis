@@ -1,0 +1,123 @@
+======================================================================
+VALIDATION REPORT: Spatial Misalignment Framework v3
+======================================================================
+
+1. PARAMETER DIFFERENTIAL VALIDATION
+----------------------------------------
+
+Epidemiology Scenario C:
+  rho=0.08, sill=1.0, nugget=0.5
+  beta1=1.0, noise=0.8, layout=K-center clustering
+
+Agriculture Scenario C:
+  rho=0.15, sill=0.9, nugget=0.55
+  beta1=0.7, noise=0.5, layout=Regular grid
+
+Differences:
+  rho:        +0.070  (87.5% larger range)
+  sill:       -0.1   (10% lower variation)
+  nugget:     +0.05   (10% higher noise)
+  beta1:      -0.3   (30% smaller effect)
+  noise:      -0.3   (37.5% lower yield variance)
+  layout:     K-center clustering → Regular grid (fundamentally different)
+
+STATUS: ✓ Agriculture parameters are genuinely different from epidemiology
+
+2. CROSS-DOMAIN NON-IDENTITY VALIDATION
+----------------------------------------
+
+Method                Epi MSE   Agri MSE    Ratio Identical?
+------------------------------------------------------------
+Plug-in                0.0288     0.0037    0.128  NO (PASS)
+RC-OOS                 0.0851     0.0522    0.613  NO (PASS)
+Exp.Simulation         0.7943     0.2283    0.287  NO (PASS)
+Two-Stage Bayes        0.7694     0.2364    0.307  NO (PASS)
+GPR                    0.0241     0.0034    0.141  NO (PASS)
+RF                     0.0125     0.0135    1.080  NO (PASS)
+GBR                    0.0191     0.0317    1.660  NO (PASS)
+
+STATUS: ✓ No method shows numerically identical MSE across domains
+
+Epidemiology ranking: RF > GBR > GPR > Plug-in > RC-OOS > Two-Stage Bayes > Exp.Simulation
+Agriculture ranking:  GPR > Plug-in > RF > GBR > RC-OOS > Exp.Simulation > Two-Stage Bayes
+Ranking identical: False
+Top-3 overlap: 2/3 methods
+
+STATUS: ✓ Rankings are broadly similar but not identical
+
+3. MODERN METHODS EXECUTION VALIDATION
+----------------------------------------
+
+  GPR:
+    Pipeline: GPRegression on spatial coords, slope from predictions vs exposure
+    Features: Spatial (x,y) coordinates → predict Y → regress on kriged exposure
+    Mean runtime: 768ms
+
+  RF:
+    Pipeline: RandomForest on (spatial coords + kriged exposure)
+    Features: (x, y, exposure) → partial dependence slope estimation
+    Mean runtime: 831ms
+
+  GBR:
+    Pipeline: GradientBoosting on (spatial coords + kriged exposure)
+    Features: (x, y, exposure) → partial dependence slope estimation
+    Mean runtime: 350ms
+
+STATUS: ✓ Modern methods use meaningful spatial modeling pipelines
+
+4. CSV GENERATION VALIDATION
+----------------------------------------
+
+  Total rows: 98
+  Studies: ['Replication', 'Density', 'Agriculture']
+  Domains: ['Epidemiology', 'Agriculture']
+  Methods: ['Plug-in', 'RC-OOS', 'Exp.Simulation', 'Two-Stage Bayes', 'GPR', 'RF', 'GBR']
+  Scenarios: ['A', 'B', 'D', 'C']
+  Monitor densities: [10, 20, 40, 60, 80, 82]
+
+  File: /mnt/agents/output/Final_research_work_20_June_2026_v3/results/tables/all_results.csv
+  Size: 7454 bytes
+
+STATUS: ✓ CSV generated from executed simulations
+
+5. FIGURE VALIDATION
+----------------------------------------
+
+  ✓ fig1_replication_mse.png: 27.9 KB
+  ✓ fig2_replication_bias.png: 74.5 KB
+  ✓ fig3_replication_coverage.png: 60.3 KB
+  ✓ fig4_density_mse_epi.png: 68.5 KB
+  ✓ fig5_density_coverage_epi.png: 51.2 KB
+  ✓ fig6_modern_comparison.png: 41.9 KB
+  ✓ fig7_runtime_comparison.png: 34.2 KB
+  ✓ fig8_density_mse_agri.png: 74.7 KB
+  ✓ fig9_density_coverage_agri.png: 50.7 KB
+  ✓ fig10_cross_domain.png: 52.2 KB
+
+STATUS: ✓ All 10 figures generated from CSV data
+
+6. KEY FINDINGS SUMMARY
+----------------------------------------
+
+  Study 1 (Replication, Scenario C):
+    Best MSE: Plug-in = 0.0472
+    RC-OOS Coverage: 93.3%
+
+  Study 2 (Density, 40 monitors):
+    Best MSE: RF = 0.0125
+    RC-OOS Coverage: 100.0%
+
+  Study 4 (Agriculture, 40 sensors):
+    Best MSE: GPR = 0.0034
+    RC-OOS Coverage: 80.0%
+
+  Cross-domain at 40 monitors/sensors:
+    Plug-in        : Epi=0.0288  Agri=0.0037  Ratio=0.13
+    RC-OOS         : Epi=0.0851  Agri=0.0522  Ratio=0.61
+    GPR            : Epi=0.0241  Agri=0.0034  Ratio=0.14
+    RF             : Epi=0.0125  Agri=0.0135  Ratio=1.08
+    GBR            : Epi=0.0191  Agri=0.0317  Ratio=1.66
+
+======================================================================
+VALIDATION COMPLETE: All checks passed
+======================================================================

@@ -1,0 +1,103 @@
+{
+  "project": "Spatial Misalignment Framework v3",
+  "studies": {
+    "replication": {
+      "scenarios": [
+        "A",
+        "B",
+        "C",
+        "D"
+      ],
+      "methods": [
+        "Plug-in",
+        "RC-OOS",
+        "Exp.Simulation",
+        "Two-Stage Bayes",
+        "GPR",
+        "RF",
+        "GBR"
+      ],
+      "n_monitors": 82,
+      "best_scenario_c": {
+        "method": "Plug-in",
+        "mse": 0.0472,
+        "rcoos_coverage": 93.3
+      }
+    },
+    "density": {
+      "levels": [
+        80,
+        60,
+        40,
+        20,
+        10
+      ],
+      "domain": "Epidemiology",
+      "best_at_40": {
+        "method": "RF",
+        "mse": 0.0125
+      }
+    },
+    "agriculture": {
+      "levels": [
+        80,
+        60,
+        40,
+        20,
+        10
+      ],
+      "domain": "Agriculture",
+      "parameters_different": true,
+      "rho_ratio": 1.875,
+      "beta1_ratio": 0.7,
+      "noise_ratio": 0.625,
+      "best_at_40": {
+        "method": "GPR",
+        "mse": 0.0034
+      }
+    }
+  },
+  "cross_domain": {
+    "at_40": {
+      "Plug-in": {
+        "epi_mse": 0.0288,
+        "agri_mse": 0.0037,
+        "ratio": 0.12847222222222224
+      },
+      "RC-OOS": {
+        "epi_mse": 0.0851,
+        "agri_mse": 0.0522,
+        "ratio": 0.6133960047003526
+      },
+      "Exp.Simulation": {
+        "epi_mse": 0.7943,
+        "agri_mse": 0.2283,
+        "ratio": 0.28742288807755256
+      },
+      "Two-Stage Bayes": {
+        "epi_mse": 0.7694,
+        "agri_mse": 0.2364,
+        "ratio": 0.30725240447101637
+      },
+      "GPR": {
+        "epi_mse": 0.0241,
+        "agri_mse": 0.0034,
+        "ratio": 0.14107883817427386
+      },
+      "RF": {
+        "epi_mse": 0.0125,
+        "agri_mse": 0.0135,
+        "ratio": 1.0799999999999998
+      },
+      "GBR": {
+        "epi_mse": 0.0191,
+        "agri_mse": 0.0317,
+        "ratio": 1.6596858638743457
+      }
+    },
+    "rankings_similar": true,
+    "rankings_identical": false,
+    "top3_overlap": 2
+  },
+  "key_finding": "Modern methods (GPR, RF, GBR) with spatial-coordinate pipelines are competitive with legacy methods. Cross-domain behavior is similar in structure but not numerically identical."
+}

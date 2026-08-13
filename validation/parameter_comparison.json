@@ -1,0 +1,115 @@
+{
+  "epidemiology_params": {
+    "A": {
+      "rho": 0.3,
+      "sill": 2.0,
+      "nugget": 0.05,
+      "beta1": 1.0,
+      "noise": 0.8,
+      "nu": 1.5,
+      "name": "Large range, low nugget"
+    },
+    "B": {
+      "rho": 0.15,
+      "sill": 1.5,
+      "nugget": 0.2,
+      "beta1": 1.0,
+      "noise": 0.8,
+      "nu": 1.5,
+      "name": "Medium range, medium nugget"
+    },
+    "C": {
+      "rho": 0.08,
+      "sill": 1.0,
+      "nugget": 0.5,
+      "beta1": 1.0,
+      "noise": 0.8,
+      "nu": 1.5,
+      "name": "Small range, high nugget"
+    },
+    "D": {
+      "rho": 0.08,
+      "sill": 1.0,
+      "nugget": 0.5,
+      "beta1": 0.0,
+      "noise": 0.8,
+      "nu": 1.5,
+      "name": "Null effect"
+    }
+  },
+  "agriculture_params": {
+    "A": {
+      "rho": 0.45,
+      "sill": 1.8,
+      "nugget": 0.08,
+      "beta1": 0.7,
+      "noise": 0.5,
+      "nu": 1.5,
+      "name": "Large field, low noise"
+    },
+    "B": {
+      "rho": 0.25,
+      "sill": 1.4,
+      "nugget": 0.25,
+      "beta1": 0.7,
+      "noise": 0.5,
+      "nu": 1.5,
+      "name": "Medium field, medium noise"
+    },
+    "C": {
+      "rho": 0.15,
+      "sill": 0.9,
+      "nugget": 0.55,
+      "beta1": 0.7,
+      "noise": 0.5,
+      "nu": 1.5,
+      "name": "Small field, high noise"
+    },
+    "D": {
+      "rho": 0.15,
+      "sill": 0.9,
+      "nugget": 0.55,
+      "beta1": 0.0,
+      "noise": 0.5,
+      "nu": 1.5,
+      "name": "Null effect (agri)"
+    }
+  },
+  "cross_domain_40mon": {
+    "Plug-in": {
+      "epi_mse": 0.0513,
+      "agri_mse": 0.0036,
+      "ratio": 0.07017543859649122
+    },
+    "RC-OOS": {
+      "epi_mse": 0.0989,
+      "agri_mse": 0.0444,
+      "ratio": 0.448938321536906
+    },
+    "Exp.Simulation": {
+      "epi_mse": 0.7712,
+      "agri_mse": 0.2308,
+      "ratio": 0.2992738589211618
+    },
+    "Two-Stage Bayes": {
+      "epi_mse": 0.799,
+      "agri_mse": 0.2295,
+      "ratio": 0.28723404255319146
+    },
+    "GPR": {
+      "epi_mse": 0.528,
+      "agri_mse": 0.0088,
+      "ratio": 0.016666666666666666
+    },
+    "RF": {
+      "epi_mse": 0.0541,
+      "agri_mse": 0.0348,
+      "ratio": 0.643253234750462
+    },
+    "GBR": {
+      "epi_mse": 0.1115,
+      "agri_mse": 0.0557,
+      "ratio": 0.49955156950672647
+    }
+  }
+}
